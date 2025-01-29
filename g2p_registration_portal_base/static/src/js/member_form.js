@@ -90,6 +90,8 @@ $(document).on("click", "#member_submit", function () {
     var relationship = $('#memberDetailModal select[name="relationship"]').val();
     var isValid = true;
     var modal = $("#memberDetailModal");
+    var email = $("#memberDetailModal #email").val();
+    var address = $("#memberDetailModal #address").val();
 
     $(".form-control, .form-select").removeClass("is-invalid");
 
@@ -124,6 +126,8 @@ $(document).on("click", "#member_submit", function () {
             dob: dob,
             gender: gender,
             relationship: relationship,
+            email: email,
+            address: address,
         },
         dataType: "json",
         success: function (response) {
@@ -207,6 +211,8 @@ $(document).on("click", "#mem-update", function () {
             modal.find("#family_name").val(response.family_name);
             modal.find("#birthdate").val(response.dob);
             modal.find('select[name="gender"]').val(response.gender);
+            modal.find("#email").val(response.email);
+            modal.find("#address").val(response.address);
 
             $("#member_submit").replaceWith(
                 '<div id="update-member-btn" store="' +
@@ -234,6 +240,8 @@ $(document).on("click", "#update-member-btn", function () {
     var dob = $("#memberDetailModal #birthdate").val();
     var gender = $('#memberDetailModal select[name="gender"]').val();
     var isValid = true;
+    var address = $("#memberDetailModal #address").val();
+    var email = $("#memberDetailModal #email").val();
 
     $(".form-control, .form-select").removeClass("is-invalid");
 
@@ -262,6 +270,8 @@ $(document).on("click", "#update-member-btn", function () {
             family_name: lastName,
             birthdate: dob,
             gender: gender,
+            address: address,
+            email: email,
         },
         dataType: "json",
         success: function (response) {

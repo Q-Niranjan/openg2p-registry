@@ -622,6 +622,30 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mem-row">
+
+                                                                        <div class="col-lg-6">
+                                                                            <div>
+                                                                                    <label
+                                                                                    class="s_website_form_label"
+                                                                                    for="email"
+                                                                                >
+                                                                                        <span
+                                                                                        class="s_website_form_label_content"
+                                                                                        style="color: #666666;"
+                                                                                    >Email
+                                                                                        </span>
+                                                                                    </label>
+                                                                                    <input
+                                                                                    type="text"
+                                                                                    id="email"
+                                                                                    name="email"
+                                                                                    class="form-control"
+                                                                                    placeholder="Email"
+                                                                                    t-att-value="email"
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
                                                                         <div class="col-lg-6">
                                                                             <div>
                                                                                 <label
@@ -644,8 +668,11 @@
                                                                                     id="relation"
                                                                                     name="relationship"
                                                                                     class="form-select"
+                                                                                    t-att-value="relationship"
                                                                                 >
-                                                                                    <option value="">
+                                                                                    <option
+                                                                                        value="relationship"
+                                                                                    >
                                                                                         select</option>
                                                                                     <option
                                                                                         value="Household head"
@@ -660,6 +687,31 @@
                                                                                 </select>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+
+                                                                    <div class="row mem-row">
+                                                                    <div class="col-lg-12">
+                                                                            <div>
+                                                                                <label
+                                                                                    class="s_website_form_label"
+                                                                                    for="address"
+                                                                                >
+                                                                                    <span
+                                                                                        class="s_website_form_label_content"
+                                                                                        style="color: #666666;"
+                                                                                    >Address</span>
+                                                                                </label>
+                                                                                <textarea
+                                                                                    id="address"
+                                                                                    name="address"
+                                                                                    class="form-control"
+                                                                                    rows="2"
+                                                                                    placeholder="Enter Address"
+                                                                                    t-att-value="address"
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1168,6 +1220,32 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mem-row">
+
+
+                                                                        <div class="col-lg-6">
+                                                                            <div>
+                                                                                    <label
+                                                                                    class="s_website_form_label"
+                                                                                    for="email"
+                                                                                >
+                                                                                        <span
+                                                                                        class="s_website_form_label_content"
+                                                                                        style="color: #666666;"
+                                                                                    >Email
+                                                                                        </span>
+                                                                                    </label>
+                                                                                    <input
+                                                                                    type="text"
+                                                                                    id="email"
+                                                                                    name="email"
+                                                                                    class="form-control"
+                                                                                    placeholder="Email"
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+
+
                                                                         <div class="col-lg-6">
                                                                             <div>
                                                                                 <label
@@ -1205,7 +1283,36 @@
                                                                                         Member/dependent</option>
                                                                                 </select>
                                                                             </div>
+
                                                                         </div>
+
+
+
+
+                                                                    </div>
+
+                                                                    <div class="row mem-row">
+                                                                    <div class="col-lg-12">
+                                                                            <div>
+                                                                                <label
+                                                                                    class="s_website_form_label"
+                                                                                    for="address"
+                                                                                >
+                                                                                    <span
+                                                                                        class="s_website_form_label_content"
+                                                                                        style="color: #666666;"
+                                                                                    >Address</span>
+                                                                                </label>
+                                                                                <textarea
+                                                                                    id="address"
+                                                                                    name="address"
+                                                                                    class="form-control"
+                                                                                    rows="2"
+                                                                                    placeholder="Enter Address"
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>

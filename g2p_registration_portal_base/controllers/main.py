@@ -65,7 +65,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
             beneficiary_id = None
             # Group creation
             if kw.get("group_id"):
-                beneficiary_id = request.env["res.partner"].sudo().browse(int(kw.get("group_id")))
+                beneficiary_id = request.env["res.partner"].sudo().browse(int(kw.get("group_id"))).id
             else:
                 if head_name:
                     user = request.env.user
@@ -185,6 +185,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
     def individual_create(self, **kw):
         res = dict()
         try:
+            user = request.env.user
             head_name = kw.get("household_name")
             head_individual = None
             # Group creation
@@ -195,7 +196,9 @@ class G2PregistrationPortalBase(AgentPortalBase):
                     group_rec = (
                         request.env["res.partner"]
                         .sudo()
-                        .create({"name": head_name, "is_registrant": True, "is_group": True})
+                        .create(
+                            {"name": head_name, "is_registrant": True, "is_group": True, "user_id": user.id}
+                        )
                     )
                     # Head creation
                     head_name_parts = head_name.split(" ")
@@ -220,6 +223,9 @@ class G2PregistrationPortalBase(AgentPortalBase):
                                 "family_name": h_family_name,
                                 "birthdate": kw.get("Household_dob"),
                                 "gender": kw.get("Househol_gender"),
+                                "email": kw.get("email"),
+                                "address": kw.get("address"),
+                                "user_id": user.id,
                             }
                         )
                     )
@@ -227,7 +233,6 @@ class G2PregistrationPortalBase(AgentPortalBase):
             given_name = kw.get("given_name")
             family_name = kw.get("family_name")
             addl_name = kw.get("addl_name")
-            user = request.env.user
 
             name = f"{given_name}, {addl_name} {family_name}"
 
@@ -238,6 +243,8 @@ class G2PregistrationPortalBase(AgentPortalBase):
                 "addl_name": addl_name,
                 "birthdate": kw.get("birthdate"),
                 "gender": kw.get("gender"),
+                "email": kw.get("email"),
+                "address": kw.get("address"),
                 "is_registrant": True,
                 "is_group": False,
                 "user_id": user.id,
@@ -297,6 +304,8 @@ class G2PregistrationPortalBase(AgentPortalBase):
                     "family_name": beneficiary.family_name,
                     "dob": str(beneficiary.birthdate),
                     "gender": beneficiary.gender,
+                    "email": kw.get("email"),
+                    "address": kw.get("address"),
                     "id": beneficiary.id,
                 }
                 return json.dumps(exist_value)
@@ -331,6 +340,8 @@ class G2PregistrationPortalBase(AgentPortalBase):
                         "family_name": family_name,
                         "birthdate": kw.get("birthdate"),
                         "gender": kw.get("gender"),
+                        "email": kw.get("email"),
+                        "address": kw.get("address"),
                     }
                 )
                 # group = request.env["res.partner"].sudo().browse(int(kw.get("group_id")))
@@ -411,20 +422,30 @@ class G2PregistrationPortalBase(AgentPortalBase):
             else:
                 birthdate = kw.get("birthdate")
 
-            request.env["res.partner"].sudo().create(
-                {
-                    "given_name": kw.get("given_name"),
-                    "addl_name": kw.get("addl_name"),
-                    "family_name": kw.get("family_name"),
-                    "name": name,
-                    "birthdate": birthdate,
-                    "gender": kw.get("gender"),
-                    "email": kw.get("email"),
-                    "user_id": user.id,
-                    "is_registrant": True,
-                    "is_group": False,
-                }
+            registrant = (
+                request.env["res.partner"]
+                .sudo()
+                .create(
+                    {
+                        "given_name": kw.get("given_name"),
+                        "addl_name": kw.get("addl_name"),
+                        "family_name": kw.get("family_name"),
+                        "name": name,
+                        "birthdate": birthdate,
+                        "gender": kw.get("gender"),
+                        "email": kw.get("email"),
+                        "user_id": user.id,
+                        "is_registrant": True,
+                        "is_group": False,
+                    }
+                )
             )
+            for key, value in kw.items():
+                if key in registrant:
+                    registrant.write({key: value})
+                else:
+                    _logger.error(f"Ignoring invalid key: {key}")
+
             return request.redirect("/portal/registration/individual")
 
         except Exception as e:
@@ -487,7 +508,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
                 else:
                     birthdate = kw.get("birthdate")
 
-                member.sudo().write(
+                member = member.sudo().write(
                     {
                         "given_name": kw.get("given_name"),
                         "addl_name": kw.get("addl_name"),
@@ -498,6 +519,13 @@ class G2PregistrationPortalBase(AgentPortalBase):
                         "email": kw.get("email"),
                     }
                 )
+
+                for key, value in kw.items():
+                    if key in member:
+                        member.write({key: value})
+                    else:
+                        _logger.error(f"Ignoring invalid key: {key}")
+
             return request.redirect("/portal/registration/individual")
 
         except Exception as e:
