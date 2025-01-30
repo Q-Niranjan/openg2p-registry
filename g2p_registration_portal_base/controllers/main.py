@@ -1,5 +1,6 @@
 import json
 import logging
+from datetime import date
 
 from odoo import http
 from odoo.http import request
@@ -74,7 +75,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
                         "name": head_name,
                         "is_registrant": True,
                         "is_group": True,
-                        "birthdate": kw.get("dob"),
+                        "birthdate": kw.get("birthdate"),
                         "gender": kw.get("gender"),
                         "user_id": user.id,
                     }
@@ -223,8 +224,8 @@ class G2PregistrationPortalBase(AgentPortalBase):
                                 "family_name": h_family_name,
                                 "birthdate": kw.get("Household_dob"),
                                 "gender": kw.get("Househol_gender"),
-                                "email": kw.get("email"),
-                                "address": kw.get("address"),
+                                "email": kw.get("Household_email"),
+                                "address": kw.get("Househol_address"),
                                 "user_id": user.id,
                             }
                         )
@@ -269,11 +270,17 @@ class G2PregistrationPortalBase(AgentPortalBase):
 
             member_list = []
             for membership in group_rec.group_membership_ids:
+                age = 0
+                dob = membership.individual.birthdate
+                if dob:
+                    today = date.today()
+                    age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+
                 member_list.append(
                     {
                         "id": membership.individual.id,
                         "name": membership.individual.name,
-                        "age": membership.individual.age,
+                        "age": age,
                         "gender": membership.individual.gender,
                         "active": membership.individual.active,
                         "group_id": membership.group.id,
@@ -304,8 +311,8 @@ class G2PregistrationPortalBase(AgentPortalBase):
                     "family_name": beneficiary.family_name,
                     "dob": str(beneficiary.birthdate),
                     "gender": beneficiary.gender,
-                    "email": kw.get("email"),
-                    "address": kw.get("address"),
+                    "email": beneficiary.email,
+                    "address": beneficiary.address,
                     "id": beneficiary.id,
                 }
                 return json.dumps(exist_value)
@@ -348,11 +355,17 @@ class G2PregistrationPortalBase(AgentPortalBase):
                 member_list = []
 
                 for membership in member:
+                    age = 0
+                    dob = membership.birthdate
+                    if dob:
+                        today = date.today()
+                        age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+
                     member_list.append(
                         {
                             "id": membership.id,
                             "name": membership.name,
-                            "age": membership.age,
+                            "age": age,
                             "gender": membership.gender,
                             "active": membership.active,
                         }
@@ -517,6 +530,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
                         "birthdate": birthdate,
                         "gender": kw.get("gender"),
                         "email": kw.get("email"),
+                        "address": kw.get("address"),
                     }
                 )
 

@@ -82,6 +82,8 @@ $(document).on("click", "#member_submit", function () {
     var Householdname = $("#name").val();
     var Householddob = $("#birthdate").val();
     var Householgender = $("select[name='gender']").val();
+    var Householdemail = $("#email").val();
+    var Householdaddress = $("#address").val();
     var firstName = $("#memberDetailModal #given_name").val();
     var middleName = $("#memberDetailModal #addl_name").val();
     var lastName = $("#memberDetailModal #family_name").val();
@@ -120,6 +122,8 @@ $(document).on("click", "#member_submit", function () {
             household_name: Householdname,
             Household_dob: Householddob,
             Househol_gender: Householgender,
+            Household_email: Householdemail,
+            Househol_address: Householdaddress,
             given_name: firstName,
             family_name: middleName,
             addl_name: lastName,
