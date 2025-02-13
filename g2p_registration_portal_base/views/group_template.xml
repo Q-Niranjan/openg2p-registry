@@ -319,7 +319,9 @@
                                                             <textarea
                                                                 id="address"
                                                                 name="address"
+                                                                rows="2"
                                                                 class="form-control"
+                                                                placeholder="Enter Address"
                                                             >
                                                                 <t t-esc="beneficiary.address" />
                                                             </textarea>
@@ -1002,7 +1004,9 @@
                                                             <textarea
                                                                 id="address"
                                                                 name="address"
+                                                                rows="2"
                                                                 class="form-control"
+                                                                placeholder="Enter Address"
                                                             />
 
                                                         </div>
