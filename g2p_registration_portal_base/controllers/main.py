@@ -187,7 +187,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
         res = dict()
         try:
             user = request.env.user
-            head_name = kw.get("household_name")
+            head_name = kw.get("Household_name")
             head_individual = None
             # Group creation
             if kw.get("group_id"):
@@ -223,9 +223,9 @@ class G2PregistrationPortalBase(AgentPortalBase):
                                 "addl_name": h_addl_name,
                                 "family_name": h_family_name,
                                 "birthdate": kw.get("Household_dob"),
-                                "gender": kw.get("Househol_gender"),
+                                "gender": kw.get("Household_gender"),
                                 "email": kw.get("Household_email"),
-                                "address": kw.get("Househol_address"),
+                                "address": kw.get("Household_address"),
                                 "user_id": user.id,
                             }
                         )
@@ -242,7 +242,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
                 "given_name": given_name,
                 "family_name": family_name,
                 "addl_name": addl_name,
-                "birthdate": kw.get("birthdate"),
+                "birthdate": kw.get("dob"),
                 "gender": kw.get("gender"),
                 "email": kw.get("email"),
                 "address": kw.get("address"),
@@ -304,6 +304,7 @@ class G2PregistrationPortalBase(AgentPortalBase):
         member_id = kw.get("member_id")
         try:
             beneficiary = request.env["res.partner"].sudo().browse(int(member_id))
+
             if beneficiary:
                 exist_value = {
                     "given_name": beneficiary.given_name,

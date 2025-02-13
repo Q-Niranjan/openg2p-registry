@@ -317,12 +317,13 @@
 
                                                             </label>
                                                             <textarea
-                                                                type="text"
                                                                 id="address"
                                                                 name="address"
                                                                 class="form-control"
-                                                                t-esc="beneficiary.address"
-                                                            />
+                                                            >
+                                                                <t t-esc="beneficiary.address" />
+                                                            </textarea>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -747,8 +748,10 @@
                                                                                     class="form-control"
                                                                                     rows="2"
                                                                                     placeholder="Enter Address"
-                                                                                    t-att-value="address"
-                                                                                />
+                                                                                ><t
+                                                                                        t-esc="address"
+                                                                                    /></textarea>
+
                                                                             </div>
                                                                         </div>
 
@@ -997,11 +1000,11 @@
 
                                                             </label>
                                                             <textarea
-                                                                type="text"
                                                                 id="address"
                                                                 name="address"
                                                                 class="form-control"
                                                             />
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1388,6 +1391,7 @@
                                                                                     rows="2"
                                                                                     placeholder="Enter Address"
                                                                                 />
+
                                                                             </div>
                                                                         </div>
 

@@ -81,7 +81,7 @@ $(document).on("click", "#member_submit", function () {
     var group = $("input[name='group_id']").val();
     var Householdname = $("#name").val();
     var Householddob = $("#birthdate").val();
-    var Householgender = $("select[name='gender']").val();
+    var Householdgender = $("select[name='gender']").val();
     var Householdemail = $("#email").val();
     var Householdaddress = $("#address").val();
     var firstName = $("#memberDetailModal #given_name").val();
@@ -119,13 +119,13 @@ $(document).on("click", "#member_submit", function () {
         method: "POST",
         data: {
             group_id: group,
-            household_name: Householdname,
+            Household_name: Householdname,
             Household_dob: Householddob,
-            Househol_gender: Householgender,
+            Household_gender: Householdgender,
             Household_email: Householdemail,
-            Househol_address: Householdaddress,
-            given_name: firstName,
-            family_name: middleName,
+            Household_address: Householdaddress,
+            family_name: firstName,
+            given_name: middleName,
             addl_name: lastName,
             dob: dob,
             gender: gender,

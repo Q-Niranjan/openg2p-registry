@@ -100,9 +100,9 @@ class TestG2PregistrationPortalBase(HttpCase):
         response = self.url_open(
             "/portal/registration/member/create/",
             data={
-                "household_name": "GIVEN ADDL FAMILY",
+                "Household_name": "GIVEN FAMILY ADDL",
                 "Household_dob": "2023-01-01",
-                "Househol_gender": self.gender.value,
+                "Household_gender": self.gender.value,
                 "given_name": "Individual",
                 "family_name": "One",
                 "birthdate": "2024-01-01",
