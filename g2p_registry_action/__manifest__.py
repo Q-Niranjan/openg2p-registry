@@ -11,6 +11,7 @@
     "license": "LGPL-3",
     "depends": [
         "g2p_registry_model",
+        "formio",
     ],
     "data": [
         "security/ir.model.access.csv",

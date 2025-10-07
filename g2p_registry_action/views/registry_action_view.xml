@@ -35,13 +35,11 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="FormIO Schema" name="formio_schema">
-                            <field
-                                name="formio_schema"
-                                widget="ace"
-                                options="{'mode': 'json'}"
-                                placeholder='{"components": []}'
-                            />
+                        <page string="FormIO" name="form_builder_id">
+                            <div class="o_form_label">
+                                Select the FormIO form below:
+                            </div>
+                            <field name="form_builder_id" />
                         </page>
                     </notebook>
                 </sheet>

@@ -12,5 +12,8 @@ class G2PRegistryAction(models.Model):
     )
 
     action_name = fields.Char(required=True)
-    formio_schema = fields.Json(help="FormIO form definition JSON")
+    form_builder_id = fields.Many2one(
+        "formio.builder",
+        string="FormIO",
+    )
     action_submission_url = fields.Char(help="API endpoint for submitting data")
