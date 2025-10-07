@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Tree View -->
+    <record id="view_g2p_registry_action_tree" model="ir.ui.view">
+        <field name="name">g2p.registry.action.tree</field>
+        <field name="model">g2p.registry.action</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="action_name" />
+                <field name="registry_model_id" />
+                <field name="action_submission_url" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_g2p_registry_action_form" model="ir.ui.view">
+        <field name="name">g2p.registry.action.form</field>
+        <field name="model">g2p.registry.action</field>
+        <field name="arch" type="xml">
+            <form string="Registry Action">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="action_name" placeholder="Enter action name" />
+                            <field name="registry_model_id" options="{'no_create': True, 'no_open': True}" />
+                        </group>
+                        <group>
+                            <field
+                                name="action_submission_url"
+                                placeholder="e.g., https://api.example.com/submit"
+                                widget="url"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="FormIO Schema" name="formio_schema">
+                            <field
+                                name="formio_schema"
+                                widget="ace"
+                                options="{'mode': 'json'}"
+                                placeholder='{"components": []}'
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_g2p_registry_action" model="ir.actions.act_window">
+        <field name="name">G2P Registry Actions</field>
+        <field name="res_model">g2p.registry.action</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Registry Action
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem
+        id="menu_registry_actions"
+        name="Actions"
+        action="action_g2p_registry_action"
+        parent="g2p_registry_model.menu_g2p_registry_types"
+        sequence="10"
+    />
+</odoo>

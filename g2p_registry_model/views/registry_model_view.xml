@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_g2p_registry_model_tree" model="ir.ui.view">
+        <field name="name">g2p.registry.model.tree</field>
+        <field name="model">g2p.registry.model</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="registry_name" />
+                <field name="registry_unique_id" />
+                <field name="registry_model" />
+                <field name="registry_creation_date" />
+                <field name="registry_last_updation_date" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_g2p_registry_model_form" model="ir.ui.view">
+        <field name="name">g2p.registry.model.form</field>
+        <field name="model">g2p.registry.model</field>
+        <field name="arch" type="xml">
+            <form string="G2P Registry">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="registry_name" placeholder="Enter registry name" />
+                            <field name="registry_unique_id" placeholder="Enter unique ID" />
+                            <field name="registry_model" placeholder="e.g., res.partner" />
+                        </group>
+                        <group>
+                            <field name="registry_creation_date" readonly="1" />
+                            <field name="registry_last_updation_date" readonly="1" />
+                        </group>
+                    </group>
+                    <group>
+                        <field
+                            name="registry_details"
+                            placeholder="Enter additional details about the registry..."
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_g2p_registry_model" model="ir.actions.act_window">
+        <field name="name">G2P Registry</field>
+        <field name="res_model">g2p.registry.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first G2P Registry
+            </p>
+            <p>
+                Click the create button to add a new registry entry.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="menu_registry_types"
+        name="Types"
+        parent="g2p_registry_model.menu_g2p_registry_types"
+        action="action_g2p_registry_model"
+        sequence="10"
+    />
+</odoo>

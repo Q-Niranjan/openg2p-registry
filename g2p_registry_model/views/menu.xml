@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Part of OpenG2P. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <menuitem id="menu_g2p_registry_types" name="Registry Types" sequence="10" />
+</odoo>
